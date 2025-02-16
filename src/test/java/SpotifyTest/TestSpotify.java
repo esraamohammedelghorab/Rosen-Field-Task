@@ -37,8 +37,9 @@ public class TestSpotify {
     By ToPlaylist = By.xpath("//div[@data-encore-id=\"listRow\" and .//p[@data-encore-id=\"listRowTitle\" and contains(., 'Liked Songs')]]\n");
     By MoreOption = By.xpath("//div[@role='row' and @aria-rowindex='2']//button[@data-testid='more-button']");
     By AddToPlaylist = By.xpath("//button[@role='menuitem' and .//span[normalize-space()='Add to playlist']]\n");
-    By SelectPlaylist = By.xpath("((//button[.//span[starts-with(normalize-space(), 'My Playlist #3')]");
-    By GoToPlaylist = By.xpath("((//button[.//span[starts-with(normalize-space(), 'My Playlist #')])[1]");
+    By SelectPlaylist = By.cssSelector("ul[role='menu'][data-depth='1']");
+    By GoToPlaylist = By.xpath("//li[@aria-posinset='2']");
+    By playlistPlay = By.xpath("//button[@aria-label=\"Play Wellerman - Sea Shanty by Nathan Evans\"]");
 
 
     //Method
@@ -112,16 +113,17 @@ public class TestSpotify {
         driver.element().type(EmailLoginInput, "esraamelghorab@gmail.com")
                 .and().type(PassLoginInput, "spotify1112000")
                 .and().click(LoginButton);
-        driver.element().click(Addbutton)
-                .and().click(CreatePlaylist);
-        Thread.sleep(1000);
-        driver.browser().navigateToURL("https://open.spotify.com/");
+    //    driver.element().click(Addbutton)
+     //           .and().click(CreatePlaylist);
+//        driver.browser().navigateToURL("https://open.spotify.com/");
         driver.element().click(ToPlaylist)
                 .and().click(MoreOption)
                 .and().click(AddToPlaylist)
                 .and().click(SelectPlaylist);
-        driver.browser().navigateToURL("https://open.spotify.com/");
+        Thread.sleep(3000);
+      //  driver.browser().navigateToURL("https://open.spotify.com/");
         driver.element().click(GoToPlaylist);
+        driver.element().click(playlistPlay);
 
 
         Thread.sleep(9000);
